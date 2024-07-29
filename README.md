@@ -22,10 +22,6 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
 # Daily Expense Sharing Application
 
 This project is a backend for a daily-expenses sharing application built using NestJS and MongoDB. It allows users to add expenses and split them based on exact amounts, percentages, and equal splits. The application manages user details, validates inputs, and generates downloadable balance sheets.
@@ -48,8 +44,8 @@ This project is a backend for a daily-expenses sharing application built using N
 
 ## Installation
 
-1. *Clone the repository:*
-   bash
+1. **Clone the repository:**
+   ```bash
    git clone https://github.com/your-username/daily-expense.git
    cd daily-expense
 
@@ -57,18 +53,18 @@ This project is a backend for a daily-expenses sharing application built using N
 
 Install the dependencies and devDependencies and start the server.
 
-sh
+```sh
 npm install
 echo "MONGO_URI=mongodb://localhost:27017/daily-expense" > .env
-
+```
 
 ## Running the Application
 Start MongoDB:
 Ensure MongoDB is running on your local machine or a remote server.
 
-sh
+```sh
 npm run start:dev
-
+```
 
 ## Folder structure
 daily-expense/
@@ -97,24 +93,16 @@ daily-expense/
 
 | Endpoint               | Method | Description              | Request Body                                                                                         | Response                                                                                                                                  |
 |------------------------|--------|--------------------------|------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| `/user`                | POST   | Create a new user        | json { "name": "jai", "email": "jailingeshwar.jr@gmail.com", "phno": "+91 9360498733" }        | json { "id": "66a61cee0d9d8f8294a68efa", "name": "jai", "email": "jailingeshwar.jr@gmail.com", "phno": "+91 9360498733", "_v": 0 }  |
-| `/user/:id`            | GET    | Get user details by ID   | N/A                                                                                                  | json { "id": "66a61cee0d9d8f8294a68efa", "name": "jai", "email": "jailingeshwar.jr@gmail.com", "phno": "+91 9360498733", "_v": 0 }  |
+| `/user`                | POST   | Create a new user        | ```json { "name": "jai", "email": "jailingeshwar.jr@gmail.com", "phno": "+91 9360498733" } ```       | ```json { "_id": "66a61cee0d9d8f8294a68efa", "name": "jai", "email": "jailingeshwar.jr@gmail.com", "phno": "+91 9360498733", "__v": 0 } ``` |
+| `/user/:id`            | GET    | Get user details by ID   | N/A                                                                                                  | ```json { "_id": "66a61cee0d9d8f8294a68efa", "name": "jai", "email": "jailingeshwar.jr@gmail.com", "phno": "+91 9360498733", "__v": 0 } ``` |
 
 ### Expense Endpoints
 
 | Endpoint                       | Method | Description                | Request Body                                                                                                                                            | Response                                                                                                                  |
 |--------------------------------|--------|----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
-| `/expense`                     | POST   | Create a new expense       | json { "amount": 2500, "description": "Trip", "splitType": "Equal", "participants": [{ "userId": "66a61cee0d9d8f8294a68efa" }, { "userId": "66a6365d9caba9a2b09f8760" }] }  | json { "id": "66a63835c2f0feab2b9c98bc", "amount": 2500, "description": "Trip", "splitType": "Equal", "participants": [{ "userId": "66a61cee0d9d8f8294a68efa" }, { "userId": "66a6365d9caba9a2b09f8760" }], "_v": 0 }  |
-| `/expense/:userId`             | GET    | Get user expenses by ID    | N/A                                                                                                                                                     | json [ { "_id": "66a63835c2f0feab2b9c98bc", "amount": 2500, "description": "Trip", "splitType": "Equal", "participants": [{ "userId": "66a61cee0d9d8f8294a68efa" }, { "userId": "66a6365d9caba9a2b09f8760" }] }, { "_id": "66a6365d9caba9a2b09f8760", "amount": 500, "description": "PetFood", "splitType": "Exact", "participants": [{ "userId": "66a61cee0d9d8f8294a68efa", "amount": 500 }] } ]  |
-| `/expense/:userId/calculate`   | GET    | Calculate user expenses    | N/A                                                                                                                                                     | json { "total": 2500, "splitDetails": [{ "expenseId": "66a63835c2f0feab2b9c98bc", "amountOwed": 1250, "description": "Trip", "owesTo": "userName1" }, { "expenseId": "66a6365d9caba9a2b09f8760", "amountOwed": 500, "description": "PetFood", "owesTo": "userName2" }], "checkedBy": "jai" } ``` |\
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
+| `/expense`                     | POST   | Create a new expense       | ```json { "amount": 2500, "description": "Trip", "splitType": "Equal", "participants": [{ "userId": "66a61cee0d9d8f8294a68efa" }, { "userId": "66a6365d9caba9a2b09f8760" }] } ``` | ```json { "_id": "66a63835c2f0feab2b9c98bc", "amount": 2500, "description": "Trip", "splitType": "Equal", "participants": [{ "userId": "66a61cee0d9d8f8294a68efa" }, { "userId": "66a6365d9caba9a2b09f8760" }], "__v": 0 } ``` |
+| `/expense/:userId`             | GET    | Get user expenses by ID    | N/A                                                                                                                                                     | ```json [ { "_id": "66a63835c2f0feab2b9c98bc", "amount": 2500, "description": "Trip", "splitType": "Equal", "participants": [{ "userId": "66a61cee0d9d8f8294a68efa" }, { "userId": "66a6365d9caba9a2b09f8760" }] }, { "_id": "66a6365d9caba9a2b09f8760", "amount": 500, "description": "PetFood", "splitType": "Exact", "participants": [{ "userId": "66a61cee0d9d8f8294a68efa", "amount": 500 }] } ] ``` |
+| `/expense/:userId/calculate`   | GET    | Calculate user expenses    | N/A                                                                                                                                                     | ```json { "total": 2500, "splitDetails": [{ "expenseId": "66a63835c2f0feab2b9c98bc", "amountOwed": 1250, "description": "Trip", "owesTo": "userName1" }, { "expenseId": "66a6365d9caba9a2b09f8760", "amountOwed": 500, "description": "PetFood", "owesTo": "userName2" }], "checkedBy": "jai" } ``` |
 - Twitter - [@nestframework](https://twitter.com/nestframework)
 
 ## License
